@@ -1,66 +1,92 @@
-/* styles.css - mobile-friendly & clean */
 :root {
-  --bg: #f7f7f9;
-  --card: #ffffff;
   --accent: #0b5d91;
-  --muted: #555;
+  --accent2: #1a82c4;
+  --bg: #f2f7ff;
+  --card: #ffffff;
 }
-*{box-sizing:border-box}
-body{
+
+body {
   margin:0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background:var(--bg);
+  font-family: 'Segoe UI', sans-serif;
   color:#222;
-  line-height:1.5;
-}
-.container{max-width:980px;margin:0 auto;padding:20px;}
-.site-header{background:var(--accent);color:#fff;padding:26px 0}
-.site-header h1{margin:0;font-size:24px}
-.tag{margin-top:6px;opacity:0.95}
-.intro{margin-top:18px;background:var(--card);padding:16px;border-radius:8px}
-.forms{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;align-items:start}
-.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 20px rgba(11,93,145,0.06)}
-.card h3{margin-top:0;color:var(--accent)}
-.about{margin-top:18px;background:var(--card);padding:16px;border-radius:8px}
-.site-footer{padding:18px;text-align:center;color:var(--muted)}
-
-/* iframe styling */
-.form-iframe{
-  width:100%;
-  min-height:700px;
-  border:0;
-  border-radius:6px;
-  box-shadow:none;
 }
 
-/* Tab controls (mobile) */
-.forms-tab-controls{
-  display:none;
-  gap:6px;
-  margin:14px 0 6px;
-  justify-content:center;
-}
-.tab-btn{
-  display:inline-block;
-  padding:10px 12px;
-  border-radius:8px;
-  background:#fff;
-  border:1px solid #d7dbe0;
-  color:var(--accent);
-  font-weight:600;
-}
-.tab-btn.active{
+.container { max-width:980px; margin:0 auto; padding:20px; }
+
+.site-header {
   background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
+  color:white;
+  padding:25px 0;
+  text-align:center;
+  border-bottom:4px solid #08456a;
 }
 
-/* Mobile styles */
-@media (max-width:900px){
-  .container{padding:14px;max-width:720px}
-  .site-header h1{font-size:20px}
-  .forms{grid-template-columns:1fr;gap:12px}
-  .forms-tab-controls{display:flex}
-  .form-iframe{min-height:1200px} /* long forms need more height on mobile */
-  .card{padding:12px}
+.intro, .about {
+  background:var(--card);
+  padding:16px;
+  border-radius:12px;
+  margin-top:20px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.forms {
+  margin-top:20px;
+}
+
+.card {
+  background:var(--card);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+h3 { color:var(--accent); }
+
+/* ----------- STYLISH BUTTONS ----------- */
+
+.forms-tab-controls {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:18px 0;
+}
+
+.tab-btn {
+  padding:12px 20px;
+  border:none;
+  background:linear-gradient(135deg, var(--accent), var(--accent2));
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  border-radius:50px;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  transition:0.25s;
+}
+
+.tab-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.20);
+}
+
+.tab-btn.active {
+  background:linear-gradient(135deg, #07456a, #0b5d91);
+  transform:scale(1.05);
+}
+
+/* ------------- FORM IFRAMES ----------- */
+
+.form-iframe {
+  width:100%;
+  min-height:1200px;
+  border:none;
+  border-radius:8px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .tab-btn { font-size:14px; padding:10px 16px; }
+  .container { padding:14px; }
+  .form-iframe { min-height:1600px; }
 }
