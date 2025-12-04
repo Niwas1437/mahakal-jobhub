@@ -1,0 +1,25 @@
+/* styles.css */
+:root {
+  --bg: #f7f7f9;
+  --card: #ffffff;
+  --accent: #0b5d91;
+  --muted: #555;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:#222;
+  line-height:1.5;
+}
+.container{max-width:980px;margin:0 auto;padding:20px;}
+.site-header{background:var(--accent);color:#fff;padding:26px 0}
+.site-header h1{margin:0;font-size:28px}
+.tag{margin-top:6px;opacity:0.95}
+.forms{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media(min-width:900px){.forms{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 20px rgba(11,93,145,0.06)}
+.card h3{margin-top:0;color:var(--accent)}
+.intro, .about{margin-top:18px;background:var(--card);padding:16px;border-radius:8px}
+.site-footer{padding:18px;text-align:center;color:var(--muted)}
