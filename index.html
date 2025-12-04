@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <h1>Mahakal Employment Hub</h1>
@@ -18,45 +19,39 @@
     <section class="intro">
       <h2>Kaise kaam karega</h2>
       <ol>
-        <li>Job Seeker apna profile submit karega (address/company details visible nahi honge).</li>
-        <li>Employer vacancy post karega (address/identifier hidden for candidate).</li>
-        <li>Aap (Mahakal) dono taraf se shortlist karoge aur interview arrange karoge.</li>
+        <li>Job Seeker apna profile submit karega.</li>
+        <li>Employer vacancy post karega.</li>
+        <li>Aap shortlist aur interview arrange karoge.</li>
       </ol>
     </section>
 
-    <!-- Mobile tab controls -->
-    <div class="forms-tab-controls" role="tablist" aria-label="Forms switch">
-      <button id="tab-seeker" class="tab-btn active" data-target="seeker">Job Seeker — Apply</button>
-      <button id="tab-employer" class="tab-btn" data-target="employer">Employer — Post Vacancy</button>
+    <!-- Stylish Buttons -->
+    <div class="forms-tab-controls">
+      <button class="tab-btn" data-target="seeker">👨‍💼 Job Seeker — Apply</button>
+      <button class="tab-btn" data-target="employer">🏢 Employer — Post Vacancy</button>
     </div>
 
-    <section class="forms" id="forms">
-      <div class="card form-card" id="seeker" role="tabpanel" aria-hidden="false">
+    <section class="forms">
+      <div class="card form-card" id="seeker" aria-hidden="true" style="display:none;">
         <h3>Job Seeker — Apply</h3>
-
-        <!-- Job Seeker Form (responsive iframe) -->
-        <iframe
-          class="form-iframe"
+        <iframe class="form-iframe"
           src="https://docs.google.com/forms/d/e/1FAIpQLSe6JORY7kbFTBPiPldYQs5gY_yOSC3pH8997NfP8FvpLVN7rw/viewform?embedded=true"
-          width="100%" height="1600" frameborder="0" marginheight="0" marginwidth="0"
-          title="Job Seeker Form">Loading…</iframe>
+          width="100%" height="1700" frameborder="0">
+        </iframe>
       </div>
 
-      <div class="card form-card" id="employer" role="tabpanel" aria-hidden="true">
+      <div class="card form-card" id="employer" aria-hidden="true" style="display:none;">
         <h3>Employer — Post Vacancy</h3>
-
-        <!-- Employer Form (responsive iframe) -->
-        <iframe
-          class="form-iframe"
+        <iframe class="form-iframe"
           src="https://docs.google.com/forms/d/e/1FAIpQLSe3QJWKisPjRHQA3CBcE0ug2g_qQ6PdrKk8BtzDJznjWW9ERA/viewform?embedded=true"
-          width="100%" height="1600" frameborder="0" marginheight="0" marginwidth="0"
-          title="Employer Vacancy Form">Loading…</iframe>
+          width="100%" height="1700" frameborder="0">
+        </iframe>
       </div>
     </section>
 
     <section class="about">
       <h3>Admin Portal (For Mahakal)</h3>
-      <p>Admin dashboard Google Sheets + Apps Script se chalega. New entries par aapko email notification milegi. Company address candidates ko directly show nahi hoga — aap hi decide karoge kisko forward karna hai.</p>
+      <p>Admin dashboard Google Sheets + Apps Script se chalega.</p>
     </section>
   </main>
 
@@ -66,42 +61,33 @@
     </div>
   </footer>
 
-  <script>
-    // Tab switching for mobile: show one form at a time for better UX
-    (function(){
-      const tabs = document.querySelectorAll('.tab-btn');
-      const cards = document.querySelectorAll('.form-card');
+<script>
+  // FORM SHOW/HIDE ON BUTTON CLICK
+  const buttons = document.querySelectorAll(".tab-btn");
+  const forms = document.querySelectorAll(".form-card");
 
-      function activate(targetId){
-        cards.forEach(c => {
-          const show = c.id === targetId;
-          c.style.display = show ? 'block' : 'none';
-          c.setAttribute('aria-hidden', !show);
-        });
-        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === targetId));
-        // on mobile scroll to forms
-        if(window.innerWidth <= 900){
-          const el = document.getElementById(targetId);
-          if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
-        }
-      }
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      let target = btn.dataset.target;
 
-      tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+      // Hide all forms
+      forms.forEach(f => { f.style.display = "none"; });
 
-      // initial state
-      function setInitial(){
-        if(window.innerWidth <= 900){
-          activate('seeker'); // default mobile view
-        } else {
-          // desktop: show both
-          cards.forEach(c => { c.style.display = 'block'; c.setAttribute('aria-hidden', false); });
-        }
-      }
+      // Remove active style from all buttons
+      buttons.forEach(b => b.classList.remove("active"));
 
-      setInitial();
-      window.addEventListener('resize', setInitial);
-    })();
-  </script>
+      // Show selected form
+      document.getElementById(target).style.display = "block";
+
+      // Activate selected tab button
+      btn.classList.add("active");
+
+      // Scroll form into view (mobile friendly)
+      document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>
+
 </body>
 </html>
 
